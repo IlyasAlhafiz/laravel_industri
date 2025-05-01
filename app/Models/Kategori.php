@@ -16,7 +16,6 @@ class Kategori extends Model
         'nama_kategori',
         'deskripsi_kategori',
         'gambar_kategori',
-        'gambar_samping',
     ];
 
     public function artikel()
@@ -28,12 +27,6 @@ class Kategori extends Model
     {
         if ($this->gambar_kategori && file_exists(public_path('images/kategori/' . $this->gambar_kategori))) {
             return unlink(public_path('images/kategori/' . $this->gambar_kategori));
-        }
-    }
-    public function deleteImageSamping()
-    {
-        if ($this->gambar_samping && file_exists(public_path('images/samping/' . $this->gambar_samping))) {
-            return unlink(public_path('images/samping/' . $this->gambar_samping));
         }
     }
 }

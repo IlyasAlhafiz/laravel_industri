@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isAdmin;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PenulisController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\KomentarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::resource('kategori', KategoriController::class);
+Route::resource('penulis', PenulisController::class);
+Route::resource('artikel', ArtikelController::class);
+Route::resource('komentar', KomentarController::class);
 
 Auth::routes();
 

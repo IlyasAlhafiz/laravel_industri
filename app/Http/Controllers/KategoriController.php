@@ -40,7 +40,6 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|max:100',
             'deskripsi_kategori' => 'nullable|max:500',
             'gambar_kategori' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'gambar_samping' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'nama_kategori.required' => 'Nama kategori wajib diisi!',
             'nama_kategori.max' => 'Nama maksimal 100 karakter.',
@@ -48,9 +47,6 @@ class KategoriController extends Controller
             'gambar_kategori.image' => 'File harus berupa gambar.',
             'gambar_kategori.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
             'gambar_kategori.max' => 'Ukuran gambar maksimal 2MB.',
-            'gambar_samping.image' => 'File harus berupa gambar.',
-            'gambar_samping.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'gambar_samping.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
 
         $kategori = new Kategori();
@@ -61,12 +57,6 @@ class KategoriController extends Controller
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/kategori', $name);
             $kategori->gambar_kategori = $name;
-        }
-        if ($request->hasFile('gambar_samping')) {
-            $img = $request->file('gambar_samping');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/samping', $name);
-            $kategori->gambar_samping = $name;
         }
         $kategori->save();
 
@@ -111,7 +101,6 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|max:100',
             'deskripsi_kategori' => 'nullable|max:500',
             'gambar_kategori' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'gambar_samping' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'nama_kategori.required' => 'Nama kategori wajib diisi!',
             'nama_kategori.max' => 'Nama maksimal 100 karakter.',
@@ -119,9 +108,6 @@ class KategoriController extends Controller
             'gambar_kategori.image' => 'File harus berupa gambar.',
             'gambar_kategori.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
             'gambar_kategori.max' => 'Ukuran gambar maksimal 2MB.',
-            'gambar_samping.image' => 'File harus berupa gambar.',
-            'gambar_samping.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'gambar_samping.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
 
         $kategori = Kategori::findOrFail($id);
@@ -133,13 +119,6 @@ class KategoriController extends Controller
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/kategori', $name);
             $kategori->gambar_kategori = $name;
-        }
-        if ($request->hasFile('gambar_samping')) {
-            $kategori->deleteImage();
-            $img = $request->file('gambar_samping');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/samping', $name);
-            $kategori->gambar_samping = $name;
         }
         $kategori->save();
 
